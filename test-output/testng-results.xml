@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Automated Regression Test" duration-ms="52981" started-at="2019-12-01T05:11:50Z" finished-at="2019-12-01T05:12:43Z">
+    <groups>
+    </groups>
+    <test name="exampletest1" duration-ms="52981" started-at="2019-12-01T05:11:50Z" finished-at="2019-12-01T05:12:43Z">
+      <class name="runmanager.ExecuteTestCases">
+        <test-method status="PASS" signature="Run()[pri:0, instance:runmanager.ExecuteTestCases@523884b2]" name="Run" duration-ms="52961" started-at="2019-12-01T10:41:50Z" finished-at="2019-12-01T10:42:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Run -->
+      </class> <!-- runmanager.ExecuteTestCases -->
+    </test> <!-- exampletest1 -->
+  </suite> <!-- Automated Regression Test -->
+</testng-results>
