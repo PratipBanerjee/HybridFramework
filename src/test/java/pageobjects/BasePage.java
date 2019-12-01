@@ -37,7 +37,7 @@ public class BasePage {
 	static DateFormat datefrmat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	static Date date = new Date();
 	static String currentdate = datefrmat.format(date).toString();
-	static ExtentHtmlReporter htmlreport = new ExtentHtmlReporter(projectdirectory+"\\src/test/resources\\Reports\\AutomationReport.html");
+	static ExtentHtmlReporter htmlreport = new ExtentHtmlReporter(projectdirectory+"\\Reports\\AutomationReport.html");
 	static ExtentReports report = new ExtentReports();
 	static ExtentTest test;
 	
