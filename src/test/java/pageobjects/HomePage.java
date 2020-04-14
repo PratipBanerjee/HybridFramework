@@ -2,9 +2,12 @@ package pageobjects;
 
 import java.io.IOException;
 
+import com.codoid.products.exception.FilloException;
 import org.openqa.selenium.By;
 
 import com.aventstack.extentreports.Status;
+
+import javax.swing.plaf.metal.MetalLookAndFeel;
 
 public class HomePage extends BasePage {
 	
@@ -14,6 +17,7 @@ public class HomePage extends BasePage {
 	{
 		try
 		{
+
 			WaitForElement(ReadObjectRepository("SignInLink"));
 			driver.findElement(By.xpath(ReadObjectRepository("SignInLink"))).click();
 			test.log(Status.PASS, "Sign In Link Clicked");
@@ -26,14 +30,15 @@ public class HomePage extends BasePage {
 		
 	}
 	
-	public static void SignIn()
+	public static void SignIn() throws FilloException
 	{
 		try
 		{
 			WaitForElement(ReadObjectRepository("Email"));
-			driver.findElement(By.xpath(ReadObjectRepository("Email"))).sendKeys("");
-			driver.findElement(By.xpath(ReadObjectRepository("Password"))).sendKeys("");
+			driver.findElement(By.xpath(ReadObjectRepository("Email"))).sendKeys(GetTestData("TestData1"));
+			driver.findElement(By.xpath(ReadObjectRepository("Password"))).sendKeys(GetTestData("TestData2"));
 			driver.findElement(By.xpath(ReadObjectRepository("LoginButton"))).click();
+			WaitForElement(ReadObjectRepository("LoginValidation"));
 		}
 		catch(IOException e)
 		{

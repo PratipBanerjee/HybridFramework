@@ -157,7 +157,7 @@ public class BasePage {
 				String testcasetorun = testsuitedata.getField("Testcase");
 				Fillo TestData = new Fillo();
 				Connection gettestdata = TestData.getConnection(projectdirectory+"\\src/test/resources\\TestData.xlsx");
-				String testdataquery = "Select * from '"+testcasetorun+"'";
+				String testdataquery = "Select * from TestData where Testcase = '"+testcasetorun+"'";
 				Recordset teststepdata = gettestdata.executeQuery(testdataquery);
 				teststepdata.next();
 				ArrayList<String> TestDataList = teststepdata.getFieldNames();
@@ -168,15 +168,20 @@ public class BasePage {
 					{
 						String data = TestDataIterator.next();
 						String datavalue = teststepdata.getField(data);
-						if(datavalue.equalsIgnoreCase(columnname))
+						if(data.equalsIgnoreCase(columnname))
 						{
-							i=i+1;
+							i=i+0;
 	                        String testData=TestDataList.get(i);
 	                        String testValue= teststepdata.getField(testData);
 	                        testdatavalue = testValue;
+							break;
 	                        
 						}
+
 					}
+
+					break;
+
 				}
 				
 			}
