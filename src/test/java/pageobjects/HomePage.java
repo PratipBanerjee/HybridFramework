@@ -1,102 +1,63 @@
 package pageobjects;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
+import base.TestBase;
 import com.codoid.products.exception.FilloException;
+import framework.GetData;
 import org.openqa.selenium.By;
 
 import com.aventstack.extentreports.Status;
 
 import javax.swing.plaf.metal.MetalLookAndFeel;
 
-public class HomePage extends BasePage {
-	
-	
-	
-	public static void ClickSignIn()
-	{
-		try
-		{
+public class HomePage extends TestBase {
 
-			WaitForElement(ReadObjectRepository("SignInLink"));
-			driver.findElement(By.xpath(ReadObjectRepository("SignInLink"))).click();
-			test.log(Status.PASS, "Sign In Link Clicked");
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-			test.log(Status.FAIL, e);
-		}
-		
-	}
-	
-	public static void SignIn() throws FilloException
+
+
+	public static void BrokerLogin() throws IOException
 	{
-		try
-		{
-			WaitForElement(ReadObjectRepository("Email"));
-			driver.findElement(By.xpath(ReadObjectRepository("Email"))).sendKeys(GetTestData("TestData1"));
-			driver.findElement(By.xpath(ReadObjectRepository("Password"))).sendKeys(GetTestData("TestData2"));
-			driver.findElement(By.xpath(ReadObjectRepository("LoginButton"))).click();
-			WaitForElement(ReadObjectRepository("LoginValidation"));
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
+		TestBase.WaitForElement(GetData.ReadObjectRepository("LoginLink"));
+		driver.findElement(By.xpath(GetData.ReadObjectRepository("LoginLink"))).click();
+		TestBase.WaitForElement(GetData.ReadObjectRepository("Username"));
+		driver.findElement(By.xpath(GetData.ReadObjectRepository("Username"))).
+				sendKeys(GetData.ReadEnvironmentParameters("BrokerUsername"));
+		driver.findElement(By.xpath(GetData.ReadObjectRepository("Password"))).
+				sendKeys(GetData.ReadEnvironmentParameters("BrokerPassword"));
+		driver.findElement(By.xpath(GetData.ReadObjectRepository("LoginButton"))).click();
+		driver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);
+		TestBase.WaitForElement(GetData.ReadObjectRepository("LoginValidation"));
+
 	}
-	
-	public static void Search()
+
+	public static void UnderwriterLogin() throws IOException
 	{
-		try
-		{
-			WaitForElement(ReadObjectRepository("SearchField"));
-			driver.findElement(By.xpath(ReadObjectRepository("SearchField"))).sendKeys("");
-			driver.findElement(By.xpath(ReadObjectRepository("SearchButton"))).click();
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
+
+		TestBase.WaitForElement(GetData.ReadObjectRepository("LoginLink"));
+		driver.findElement(By.xpath(GetData.ReadObjectRepository("LoginLink"))).click();
+		TestBase.WaitForElement(GetData.ReadObjectRepository("Username"));
+		driver.findElement(By.xpath(GetData.ReadObjectRepository("Username"))).
+				sendKeys(GetData.ReadEnvironmentParameters("UndereriterUsername"));
+		driver.findElement(By.xpath(GetData.ReadObjectRepository("Password"))).
+				sendKeys(GetData.ReadEnvironmentParameters("UnderwriterPassword"));
+		driver.findElement(By.xpath(GetData.ReadObjectRepository("LoginButton"))).click();
+		driver.manage().timeouts().implicitlyWait(5000, TimeUnit.MILLISECONDS);
+		TestBase.WaitForElement(GetData.ReadObjectRepository("LoginValidation"));
+
 	}
-	
-	public static void ClickShoppingCart()
+
+	public static void SelectProduct() throws IOException
 	{
-		try
-		{
-			WaitForElement(ReadObjectRepository("ShoppingCart"));			
-			driver.findElement(By.xpath(ReadObjectRepository("ShoppingCart"))).click();
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
+		TestBase.WaitForElement(GetData.ReadObjectRepository("SelectProduct"));
+		driver.findElement(By.xpath(GetData.ReadObjectRepository("SelectProduct"))).click();
 	}
-	
-	public static void Logout()
+
+	public static void Logout() throws IOException
 	{
-		try
-		{
-			WaitForElement(ReadObjectRepository("LogOut"));			
-			driver.findElement(By.xpath(ReadObjectRepository("LogOut"))).click();
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
-	}
-	
-	public static void NavigateBackToHomePage()
-	{
-		try
-		{
-			WaitForElement(ReadObjectRepository("HomePageLink"));			
-			driver.findElement(By.xpath(ReadObjectRepository("HomePageLink"))).click();
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
+		TestBase.WaitForElement(GetData.ReadObjectRepository("Logout"));
+		driver.findElement(By.xpath(GetData.ReadObjectRepository("Logout"))).click();
+
 	}
 
 }
